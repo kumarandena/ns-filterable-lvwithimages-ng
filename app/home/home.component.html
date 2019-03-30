@@ -3,7 +3,7 @@
 </ActionBar>
 
 <StackLayout class="page">
-    <SearchBar hint="Search People..." [text]="searchPhrase" (clear)="onClear($event)"
+    <SearchBar hint="Search People..." (clear)="onClear($event)"
         (submit)="onSubmit($event)" (textChange)="onTextChange($event)" class="search-bar"></SearchBar>
     <RadListView id="list-view" row="0" [items]="people" marginRight="-2"
         height="100%">

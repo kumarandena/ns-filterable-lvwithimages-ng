@@ -17,8 +17,6 @@ class DataItem {
 })
 export class HomeComponent implements OnInit {
 
-    searchPhrase: string;
-
     allPeople: Array<DataItem> = [
         { name: "Jane McDonald", title: "Developer Advocate", imageSrc: "https://placem.at/people?random=11&w=500&txt=0" },
         { name: "Steven Philips", title: "Social Media Coordinator", imageSrc: "https://placem.at/people?random=2&w=500&txt=0" },
@@ -44,15 +42,13 @@ export class HomeComponent implements OnInit {
             keyboard.shouldResignOnTouchOutside = true;
         }
     }
-
+ 
     public onSubmit(args) {
         let searchBar = <SearchBar>args.object;
-        this.onSearch(searchBar);
+        this.onSearch(searchBar.text ? searchBar.text.toLowerCase() : "");
     }
 
-    onSearch(searchBar) {
-        let searchValue = searchBar.text.toLowerCase();
-
+    onSearch(searchValue) {
         this.people = new ObservableArray<DataItem>();
         if (searchValue !== "") {
             for (let i = 0; i < this.allPeople.length; i++) {
@@ -76,7 +72,7 @@ export class HomeComponent implements OnInit {
 
     public onTextChange(args) {
         let searchBar = <SearchBar>args.object;
-        this.onSearch(searchBar);
+        this.onSearch(searchBar.text ? searchBar.text.toLowerCase() : "");
     }
 
     ngOnInit(): void { }
