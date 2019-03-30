@@ -1,0 +1,25 @@
+<ActionBar class="action-bar">
+    <Label text="Directory" class="action-bar-label"></Label>
+</ActionBar>
+
+<StackLayout class="page">
+    <SearchBar hint="Search People..." [text]="searchPhrase" (clear)="onClear($event)"
+        (submit)="onSubmit($event)" (textChange)="onTextChange($event)" class="search-bar"></SearchBar>
+    <RadListView id="list-view" row="0" [items]="people" marginRight="-2"
+        height="100%">
+        <ng-template tkListItemTemplate let-item="item">
+            <StackLayout>
+                <StackLayout margin="0">
+                    <Image src="{{ item.imageSrc }}" stretch="aspectFill"
+                        height="200"></Image>
+                    <StackLayout paddingTop="15" paddingBottom="15"
+                        paddingLeft="15" paddingRight="15" backgroundColor="White">
+                        <Label text="{{ item.name }}" class="person-name"></Label>
+                        <Label text="{{ item.title }}" class="person-title"></Label>
+                    </StackLayout>
+                    <StackLayout class="divider" height="10"></StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+</StackLayout>
